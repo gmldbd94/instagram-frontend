@@ -1,2 +1,2 @@
 ## instagram clone frontEnd
- 6.1까지 들음 
+ 8.0까지 들을 차례입니다. 

@@ -4,6 +4,7 @@ import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
 import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQueries";
+import { toast } from "react-toastify";
 
 const PostContainer = ({
   id,
@@ -23,6 +24,9 @@ const PostContainer = ({
   const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likeCount);
   const [currentItem, setCurrentItem] = useState(0);
+
+  //댓글 또한 비동기적 처리를 위해 useState를 이용하였다.
+  const [selfComments, setSelfComments] = useState([]);
   const comment = useInput("");
 
   //mutation에 필요한 value값을 연결해준다.
@@ -47,8 +51,29 @@ const PostContainer = ({
   useEffect(() => {
     slide();
   }, [currentItem]);
-  // 이해가 안된다면 7.4장을 다시 보자
 
+  //엔터(KeyCode:13)를 눌렀을 때 동작을 한다.
+  // console.log(e.keyCode);
+  // 키보드에서 입력된 keyCode를 확인 할 수 있다.
+  const onKeyPress = async event => {
+    const { which } = event;
+    if (which === 13) {
+      //이벤트가 계속 이어나가지 않게 한다.
+      event.preventDefault();
+      setSelfComments([...selfComments, comment.value]);
+      try {
+        //작성글 데이터베이스로 보내기
+        const { data: { addComment } } = await addCommentMutation();
+        //임시로 화면에 표시하는 setSelfComments함수
+        //setSelfComments([...selfComments, addComment]);
+        comment.setValue("");
+      } catch {
+        toast.error("Cant send comment");
+      }
+    }
+  };
+
+  // 이해가 안된다면 7.4장을 다시 보자
   const toggleLike = () => {
     // toggleLikeMutation는 데이터베이스
     toggleLikeMutation();
@@ -77,6 +102,8 @@ const PostContainer = ({
       setLikeCount={setLikeCount}
       currentItem={currentItem}
       toggleLike={toggleLike}
+      onKeyPress={onKeyPress}
+      selfComments={selfComments}
     />
   );
 };
