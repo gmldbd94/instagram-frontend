@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "rl-react-helmet";
 import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
@@ -45,9 +46,11 @@ const Wrapper = styled.div`
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
   //loading 하는동안의 recycle view를 표시해준다.
-  console.log(data);
   return (
     <Wrapper>
+      <Helmet>
+        <title>Feed | Prismagram</title>
+      </Helmet>
       {loading && <Loader />}
       {!loading &&
         data &&
@@ -57,6 +60,8 @@ export default () => {
             key={post.id}
             id={post.id}
             user={post.user}
+            location={post.location}
+            caption={post.caption}
             files={post.files}
             likeCount={post.likeCount}
             isLiked={post.isLiked}
