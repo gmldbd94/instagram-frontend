@@ -11,11 +11,11 @@ import { HashRouter as Router } from "react-router-dom";
 import GlobalStyles from "../Styles/GlobalStyles";
 import styled, {ThemeProvider} from "styled-components";
 import Theme from "../Styles/Theme";
-import Routes from "./Router"
+import Routes from "./Routes"
 import Header from "./Header";
 import Footer from "./Footer";
 
-const QUERY= gql `
+const QUERY = gql `
   {
     isLoggedIn @client
   }
@@ -31,10 +31,10 @@ const Wrapper = styled.div`
 export default () => {
 
   const { data : {isLoggedIn} } = useQuery(QUERY);
-
   return(
     <ThemeProvider theme={Theme}>
       <>
+        <GlobalStyles />
         <Router>
           <>
             <Header />
