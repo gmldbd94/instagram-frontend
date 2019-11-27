@@ -60,12 +60,12 @@ const PostContainer = ({
     if (which === 13) {
       //이벤트가 계속 이어나가지 않게 한다.
       event.preventDefault();
-      setSelfComments([...selfComments, comment.value]);
+      //setSelfComments([...selfComments, comment.value]);
       try {
         //작성글 데이터베이스로 보내기
         const { data: { addComment } } = await addCommentMutation();
         //임시로 화면에 표시하는 setSelfComments함수
-        //setSelfComments([...selfComments, addComment]);
+        setSelfComments([...selfComments, addComment]);
         comment.setValue("");
       } catch {
         toast.error("Cant send comment");

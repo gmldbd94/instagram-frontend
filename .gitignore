@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/prismagram-frontend/node_modules
+/prismagram-frontend/.pnp
+/prismagram-frontend.pnp.js
+
+# testing
+/prismagram-frontend/coverage
+
+# production
+/prismagram-frontend/build
+
+# misc
+.DS_Store
+/prismagram-frontend/.env.local
+/prismagram-frontend/.env.development.local
+/prismagram-frontend/.env.test.local
+/prismagram-frontend/.env.production.local
+
+/prismagram-frontend/npm-debug.log*
+/prismagram-frontend/yarn-debug.log*
+/prismagram-frontend/yarn-error.log*

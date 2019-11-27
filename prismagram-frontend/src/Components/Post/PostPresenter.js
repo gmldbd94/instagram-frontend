@@ -139,14 +139,12 @@ export default ({
       <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
       {comments && (
         <Comments>
-          //기존에 작성된 댓글
           {comments.map(comment => (
             <Comment key={comment.id}>
               <FatText text={comment.user.username} />
               {comment.text}
             </Comment>
           ))}
-          //작성자가 댓글 추가
           {selfComments.map(comment => (
             <Comment key={comment.id}>
               <FatText text={comment.user.username} />

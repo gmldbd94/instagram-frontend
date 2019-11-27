@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+
+//사이즈 조절
 const getSize = size => {
   let number;
   if (size === "sm") {
@@ -16,7 +18,7 @@ const getSize = size => {
         height:${number}px;
         `;
 };
-
+//size에 따라 크기 변환
 const Container = styled.div`
   ${props => getSize(props.size)}
   background-image:url(${props => props.url});
