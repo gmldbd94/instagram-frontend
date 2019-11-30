@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Auth from "../Routes/Auth/index";
 import Feed from "../Routes/Feed";
 import Explore from "../Routes/Explore";
-import Profile from "../Routes/Profile";
+import Profile from "../Routes/Profile/index";
 import Search from "../Routes/Search/index"
 
 

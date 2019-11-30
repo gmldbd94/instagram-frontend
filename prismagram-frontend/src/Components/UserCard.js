@@ -39,7 +39,7 @@ UserCard.propTypes = {
   username: PropTypes.string.isRequired,
   isFollowing: PropTypes.bool.isRequired,
   url: PropTypes.string.isRequired,
-  isSelf: PropTypes.bool
+  isSelf: PropTypes.bool.isRequired
 };
 
 export default UserCard;

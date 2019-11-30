@@ -17,6 +17,7 @@ const Overlay = styled.div`
   }
 `;
 
+
 const Container = styled.div`
   background-image: url(${props => props.bg});
   background-size: cover;
