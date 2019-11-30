@@ -5,7 +5,9 @@ import Auth from "../Routes/Auth/index";
 import Feed from "../Routes/Feed";
 import Explore from "../Routes/Explore";
 import Profile from "../Routes/Profile";
-import Search from "../Routes/Search"
+import Search from "../Routes/Search/index"
+
+
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={Feed} />
