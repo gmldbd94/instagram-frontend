@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
-import Post from "../Components/Post";
+import Post from "../Components/Post/index";
 //Feed에 해당하는 gql
 const FEED_QUERY = gql`
   {

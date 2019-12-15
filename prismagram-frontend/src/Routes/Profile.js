@@ -50,8 +50,6 @@ export default withRouter(({ match: { params: { username } } }) => {
       </Wrapper>
     );
   } else {
-
-    console.log(data);
     const {
       seeUser: {
         avatar,

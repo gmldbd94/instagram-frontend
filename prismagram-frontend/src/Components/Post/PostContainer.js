@@ -5,6 +5,7 @@ import PostPresenter from "./PostPresenter";
 import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQueries";
 import { toast } from "react-toastify";
+import {DateToNow} from "../DateToNow";
 
 const PostContainer = ({
   id,
@@ -17,6 +18,8 @@ const PostContainer = ({
   caption,
   location
 }) => {
+  const [isDatetoNowAt, setDateNowAt] = useState(createdAt);
+  console.log(DateToNow(createdAt));
   //useState를 사용하여 비동기적으로 처리 할 수 있다.
   //useState는 마치 데이터에 반영한 것처럼 처리하는 것이다.
   //S를 붙인 이유는 앞서 prop와 겹치기 때문이다.
@@ -60,13 +63,13 @@ const PostContainer = ({
     if (which === 13) {
       //이벤트가 계속 이어나가지 않게 한다.
       event.preventDefault();
-      //setSelfComments([...selfComments, comment.value]);
       try {
         //작성글 데이터베이스로 보내기
         const { data: { addComment } } = await addCommentMutation();
         //임시로 화면에 표시하는 setSelfComments함수
         setSelfComments([...selfComments, addComment]);
         comment.setValue("");
+        console.log("writing!");
       } catch {
         toast.error("Cant send comment");
       }
@@ -86,9 +89,9 @@ const PostContainer = ({
       setLikeCount(likeCountS + 1);
     }
   };
-
   return (
     <PostPresenter
+      id={id}
       user={user}
       files={files}
       likeCount={likeCountS}
